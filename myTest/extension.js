@@ -35,12 +35,12 @@ function activate(context) {
 		if (buttonChoice === 'Got time'){
 			vscode.window.showInformationMessage('Awesome! Let us do it', 'bye');
 		} else if (buttonChoice === 'LINK') {
-			vscode.env.openExternal(vscode.Uri.parse('https://code.visualstudio.com/api/references/vscode-api'));
+			vscode.env.openExternal(vscode.Uri.parse('https://www.alchemycodelab.com/'));
 		}
 	});
 
 	disposable = vscode.commands.registerCommand('myTest.helloTest', function () {
-		vscode.env.openExternal(vscode.Uri.parse('https://code.visualstudio.com/api/references/vscode-api'));
+		vscode.env.openExternal(vscode.Uri.parse('https://www.alchemycodelab.com/'));
 	});
 
 
