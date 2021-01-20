@@ -1,23 +1,5 @@
 // const vscode = require('vscode-test');
 const vscode = require('vscode');
-const { getImage } = require('./newFile');
-
-// const asciify = require('asciify-image');
-
-// const options = {
-// 	fit:    'box',
-// 	width:  50,
-// 	height: 50
-//   }
-
-//   asciify('./henry.png', options, function (err, asciified) {
-// 	if (err) throw err;
-   
-// 	// Print to console
-// 	console.log(asciified);
-//   });
-
-console.log(getImage());
 
 function activate(context) {
 	const hour = (1000 * 60 * 60);
@@ -51,9 +33,11 @@ function activate(context) {
 		vscode.env.openExternal(vscode.Uri.parse('https://www.alchemycodelab.com/'));
 	});
 
-	let panel = vscode.window.createWebviewPanel('video', 'Here is the video', vscode.ViewColumn.One, {})
+	let panel = vscode.window.createWebviewPanel('video', 'Here is the video', vscode.ViewColumn.One, { enableScripts: true	})
+	// enableScripts added
 	
 	panel.webview.html = getWebviewContent();
+
 
 	context.subscriptions.push(panel);
 	context.subscriptions.push(disposable);
@@ -61,24 +45,30 @@ function activate(context) {
 
 function getWebviewContent() {
 	return `<!DOCTYPE html>
-  <html lang="en">
-  <head>
+    <html lang="en">
+    <head>
 	  <meta charset="UTF-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <title>Cat Coding</title>
-  </head>
-  <body>
-	  <img src="https://media.giphy.com/media/R0QUlihXieN9a1e0oO/source.gif" width="300" /><br/>
-	  This is how you do a jumping jack.
+	  <title>Move your body</title>
+    </head>
+    <body>
 
-  </body>
-  </html>`;
-  }
+	  <iframe width="600" height="400" src="https://www.youtube.com/embed/r2WkhWACuNc?autoplay=1&mute=1" sandbox="allow-scripts"></iframe>
+	  <br/>
+	  <iframe width="600" height="400" src="https://www.youtube.com/embed/r2WkhWACuNc?autoplay=1&mute=1"></iframe>
 
+	</body>
 
-//   <iframe width="1519" height="623" src="https://www.youtube.com/embed/9e9NSMY8QiQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+	</html>`;
+	}
+	
+	// DO WE NEED A SCRIPT TAG?
 
+	// <img src="https://media.giphy.com/media/R0QUlihXieN9a1e0oO/source.gif" width="300" /><br/>
+	// This is how you do a jumping jack.
+	// <br/>
 
+	// <iframe width="600" height="400" src="https://youtu.be/r2WkhWACuNc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 exports.activate = activate;
 
